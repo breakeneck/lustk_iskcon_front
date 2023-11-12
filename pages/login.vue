@@ -11,7 +11,12 @@ async function login() {
   error.value = data.value.error;
   if (! error.value) {
     ElMessage(`User ${data.value.user.name} is logged in successfully`);
+    user.saveAuth(data.value.user);
   }
+}
+async function logout() {
+  const { data } = await useGet('/logout');
+  console.log(data.value);
 }
 
 </script>

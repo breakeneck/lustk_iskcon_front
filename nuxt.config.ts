@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@element-plus/nuxt',
     '@unocss/nuxt',
     '@pinia/nuxt',
+    '@pinia-plugin-persistedstate/nuxt',
   ],
   elementPlus: {},
   // anu: {

@@ -1,5 +1,5 @@
 <?php
 
-app()->get('/', function () {
+app()->get('/ghgfh', function () {
     response()->json(['message' => 'Congrats!! You\'re on Leaf API']);
 });

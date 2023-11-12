@@ -1,21 +1,31 @@
 <?php
 
 namespace App\Helpers;
+use App\Models\User;
+
 class App {
-    static function loadModel($model)
+    static $user;
+    static function loadModel($model, $data = [])
     {
-        $post = json_decode(file_get_contents('php://input'));
-        foreach ($post as $attr => $value) {
+//        $data = $data ?: json_decode(file_get_contents('php://input'));
+        $data = $data ?: json_decode(request()->input());
+        foreach ($data as $attr => $value) {
             $model->$attr = $value;
         }
         return $model;
     }
 
-    static function outModel($model)
+    static function authenticate()
     {
-        foreach ($model as $attr => $value) {
-
+        if (! request()->hasHeader('Authorization')) {
+            return false;
         }
-        //$model->getAttributes()
+        $bearer = request()->headers('Authorization');
+        $access_token = trim(substr($bearer, strlen('Bearer ')));
+        $rawUser = db()->select('users')->where('access_token', $access_token)->assoc();
+        if ($rawUser) {
+            self::$user = self::loadModel(new User(), $rawUser);
+        }
+        return boolval($rawUser);
     }
 }

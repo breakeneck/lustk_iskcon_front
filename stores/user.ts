@@ -34,6 +34,10 @@ export const useUserStore = defineStore('user', {
     actions: {
         saveAuth(model) {
             this.model = model;
+        },
+        async logoutRedirect() {
+            await navigateTo('/login');
         }
-    }
+    },
+    persist: true,
 });

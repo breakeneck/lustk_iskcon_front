@@ -99,6 +99,7 @@ Leaf\Core::loadApplicationConfig();
 */
 \Leaf\Database::initDb();
 
+app()->use(new \App\Middleware\AuthMiddleware());
 /*
 |--------------------------------------------------------------------------
 | Run your Leaf MVC application

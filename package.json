@@ -12,6 +12,7 @@
   "devDependencies": {
     "@element-plus/nuxt": "^1.0.6",
     "@nuxt/devtools": "latest",
+    "@pinia-plugin-persistedstate/nuxt": "^1.2.0",
     "@unocss/nuxt": "^0.57.3",
     "@unocss/preset-attributify": "^0.57.3",
     "element-plus": "^2.4.2",

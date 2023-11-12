@@ -7,6 +7,11 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    public function index()
+    {
+        print_r(request()->getPath());
+    }
+
     public function login()
     {
         $loggedUser = App::loadModel(new User());
@@ -25,6 +30,7 @@ class AuthController extends Controller
 
     public function logout()
     {
+//        print_r(request()->getPath());
         response()->json([
             'message' => 'You are logged out'
         ]);
