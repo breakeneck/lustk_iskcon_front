@@ -5,10 +5,8 @@ use App\Models\User;
 
 class App {
     static $user;
-    static function loadModel($model, $data = [])
+    static function loadModel($model, $data)
     {
-//        $data = $data ?: json_decode(file_get_contents('php://input'));
-        $data = $data ?: json_decode(request()->input());
         foreach ($data as $attr => $value) {
             $model->$attr = $value;
         }

@@ -14,14 +14,14 @@ class AuthController extends Controller
 
     public function login()
     {
-        $loggedUser = App::loadModel(new User());
+        $user = new User(request()->input());
 
-        $user = db()->select('users')
-            ->where('email', $loggedUser->email)
-            ->where('password', $loggedUser->password)
+        $loggedUser = db()->select('users')
+            ->where('email', $user->email)
+            ->where('password', $user->password)
             ->obj();
-        if (isset($user->id)) {
-            response()->json(['user' => $user]);
+        if (isset($loggedUser->id)) {
+            response()->json(['user' => $loggedUser]);
         }
         else {
             response()->json(['error' => 'User not found']);
@@ -30,7 +30,6 @@ class AuthController extends Controller
 
     public function logout()
     {
-//        print_r(request()->getPath());
         response()->json([
             'message' => 'You are logged out'
         ]);
