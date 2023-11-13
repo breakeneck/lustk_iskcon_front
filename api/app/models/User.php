@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Leaf\Model;
+
 /**
  * @property $id
  * @property $name

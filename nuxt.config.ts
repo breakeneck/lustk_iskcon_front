@@ -13,6 +13,11 @@ export default defineNuxtConfig({
   //   // options
   // },
   // ssr: false,
+  css: [
+      '@unocss/reset/normalize.css',
+      '@unocss/reset/sanitize/sanitize.css',
+      '@unocss/reset/sanitize/assets.css',
+  ],
   runtimeConfig: {
     public: {
       baseURL: process.env.BASE_URL || 'http://gauranga.duckdns.org:5500/',

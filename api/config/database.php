@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'default' => _env('DB_CONNECTION', 'mysql'),
+//    'default' => ['mysql', 'sqlite'],
+    'default' => 'mysql',
+        //_env('DB_CONNECTION', 'mysql'),
 
     /*
     |--------------------------------------------------------------------------
@@ -34,10 +36,14 @@ return [
     'connections' => [
         'sqlite' => [
             'driver' => 'sqlite',
-            'url' => _env('DATABASE_URL'),
-            'database' => _env('DB_DATABASE', DatabasePath('database.sqlite')),
+//            'url' => _env('BOOKS_DATABASE_URL'),
+//            'database' => _env('DB_DATABASE', DatabasePath('database.sqlite')),
+            'url' => 'sqlite:'. Databasepath('/'. __DIR__ .'/../storage/gitabase.db'),
+            'database' => 'sqlite:./storage/gitabase.db',
+//            'database' => DatabasePath('./storage/gitabase.db'),
             'prefix' => '',
-            'foreign_key_constraints' => _env('DB_FOREIGN_KEYS', true),
+            'foreign_key_constraints' => true,
+//            'foreign_key_constraints' => _env('DB_FOREIGN_KEYS', true),
         ],
 
         'mysql' => [

@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Helpers\App;
 use App\Models\User;
 
 class AuthController extends Controller

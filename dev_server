@@ -1,1 +1,1 @@
-php -S localhost:5500 -t ./api
+cd api && php -S localhost:5500

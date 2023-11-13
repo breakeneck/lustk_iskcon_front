@@ -1,14 +1,11 @@
 <script setup lang="ts">
-definePageMeta({
-  middleware: ['auth'],
-});
+function loadPage(node) {
+  ElMessage(node.id + ' ' + node.label)
+}
 </script>
 
 <template>
-  <h1>Index</h1>
-  <nuxt-link to="login">
-    Login
-  </nuxt-link>
+  <books @chapter-click="loadPage"/>
 </template>
 
 <style scoped>

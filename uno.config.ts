@@ -16,5 +16,5 @@ export default defineConfig({
         presetIcons(),
         presetTypography(),
     ],
-    include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
+    // include: [/.*\/anu-vue\.js(.*)?$/, './**/*.vue', './**/*.md'],
 })

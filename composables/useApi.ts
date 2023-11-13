@@ -1,8 +1,8 @@
 const API_URL = 'http://localhost:5500';
 
 export const useGet = async (path) => {
-    const options ={};
-    return await useFetch(API_URL + path, addAuth(options));
+    const options = {};
+    return await useFetch(API_URL + path, addDefaultOpts(options));
 }
 
 export const usePost = async (path, payload) => {
@@ -10,10 +10,19 @@ export const usePost = async (path, payload) => {
         method: 'POST',
         body: payload
     }
-    return await useFetch(API_URL + path, addAuth(options));
+    return await useFetch(API_URL + path, addDefaultOpts(options));
 }
 
-function addAuth(options) {
+export const useApi = async(url, payload = null) => {
+    const options = !payload ? {} : {
+        method: 'POST',
+        body: payload
+    }
+    const {data} = await useFetch(API_URL + url, addDefaultOpts(options));
+    return data.value;
+}
+
+function addDefaultOpts(options) {
     const user = useUserStore();
 
     if (user.isLogged) {
@@ -21,5 +30,7 @@ function addAuth(options) {
             Authorization: 'Bearer ' + user.model.access_token
         };
     }
+    options.lazy = true;
+
     return options;
 }
