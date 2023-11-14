@@ -3,6 +3,8 @@ import type Node from 'element-plus/es/components/tree/src/model/node'
 
 const props = defineProps(['books']);
 
+const books = await useApi('/books');
+
 const treeProps = {
   isLeaf: 'isLeaf',
 }
@@ -11,7 +13,7 @@ async function load(node: Node, resolve) {
   switch (node.level) {
     case 0:
       console.log('books', node)
-      resolve(props.books);
+      resolve(books);
       break;
     case 1:
       resolve(await useApi('/books/contents/' + node.data.id))
