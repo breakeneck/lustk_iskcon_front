@@ -6,7 +6,10 @@ onMounted(() => tabs.push(...useBookStore().tabs));
 const active = ref({label: '', id: 0, abbr: ''});
 const activeTabId = ref(0)
 function add(node) {
-  tabs.push(node);
+  const isExist = findIndex(node.id);
+  if (! isExist) {
+    tabs.push(node);
+  }
   activate(node.id)
 }
 function activate(id) {
