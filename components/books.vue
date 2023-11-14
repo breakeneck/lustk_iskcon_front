@@ -17,7 +17,7 @@ async function load(node: Node, resolve) {
     case 1:
       resolve(await useApi('/books/content/' + node.data.id))
       break;
-    case 2:
+    default:
       resolve(await useApi('/books/chapters/' + node.data.id))
       break;
   }

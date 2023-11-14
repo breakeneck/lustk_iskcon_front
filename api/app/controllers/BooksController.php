@@ -29,40 +29,18 @@ class BooksController extends Controller
             ];
         }
         response()->json($response);
-
-//        /** @var Book $book */
-//        $book = Book::where('id', $bookId)->first();
-//
-//        $chapters = db()->select('chapters')
-//            ->where('book_id', $book->id)
-//            ->where('level', 1)
-//            ->get();
-//
-//        response()->json(array_map(fn($chapter) => [
-//            'label' => basename($chapter['path']) . '. ' . $chapter['title'],
-//            'id' => $chapter['id'],
-//        ], $chapters));
     }
 
     function chapters($id)
     {
-        /** @var Chapter $selected */
-        $selected = Chapter::where('id',$id)->first();
-        /** @var Book $book */
-        $book = Book::where('id', $selected->book_id)->first();
-
-        $chapters = db()->select('chapters')
-            ->where('book_id', $book->id)
-            ->where('level', $selected->level + 1)
-            ->where('path', 'LIKE', $selected->path . '/%')
-            ->get();
-
-
-        response()->json(array_map(fn($chapter) => [
-            'label' => basename($chapter['path']) . '. ' . $chapter['title'],
-            'id' => $book['levels'] == 2 ? $chapter['id'] : null,
-            'isLeaf' => $book['levels'] == 2
-        ], $chapters));
+        $response = [];
+        foreach(Chapter::subchapters(Chapter::find($id))->get() as $chapter) {
+            $response[] = [
+                'id' => $chapter->id,
+                'label' => basename($chapter->path) .'. '. $chapter->title
+            ];
+        }
+        response()->json($response);
     }
 
     function tree($lang = 'ukr')
@@ -89,35 +67,5 @@ class BooksController extends Controller
             ->where('lang', $lang)
             ->get()
         ));
-    }
-    function tree2($lang = 'rus')
-    {
-        response()->json(array_map(fn($book) => [
-            'label' => $book['title'],
-            'children' => array_map(fn($chapter) => [
-                'label' => basename($chapter['path']) . '. ' . $chapter['title'],
-                'path' => $chapter['path'],
-                'children' => array_map(fn($subchapter) => [
-                    'label' => basename($subchapter['path']) . '. ' . $subchapter['title'],
-                    'path' => $subchapter['path'],
-                ], $book['levels'] == 2 ? []
-                    : db()->select('chapters')
-                        ->where('book_id', $book['id'])
-                        ->where('level', 2)
-                        ->where('path', 'LIKE', $chapter['path'] . '/%')
-                        ->get())
-            ], db()->select('chapters')
-                ->where('book_id', $book['id'])
-                ->where('level', 1)
-                ->get())
-        ], db()->select('books')
-            ->where('lang', $lang)
-            ->get()
-        ));
-    }
-    function test($lang = 'rus')
-    {
-        $books = Book::where('lang', $lang)->get();
-        response()->json($books);
     }
 }
