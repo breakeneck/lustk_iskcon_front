@@ -37,9 +37,9 @@ const findIndex = (id) => {
       <el-icon mr-2><el-icon-notebook /> </el-icon> Books
     </el-button>
     <div v-for="tab of tabs">
-      <el-button @click="activate(tab.id)" :class="{active: tab.id == activeTabId}">
+      <el-button @click="activate(tab.id)" :class="{active: tab.id == activeTabId}" plain>
         {{tab.label}}
-        <button @click="close(tab.id)">X</button>
+        <el-icon ml-1 ><ElIconCircleCloseFilled @click="close(tab.id)" text-rose-400/></el-icon>
       </el-button>
     </div>
   </header>
@@ -57,6 +57,9 @@ header {
   background: #eaeaea;
 }
 .active {
-  background: orange;
+  color: var(--el-button-active-text-color);
+  border-color: var(--el-button-active-border-color);
+  outline: 0;
+  background: rgb(236, 245, 255);
 }
 </style>
