@@ -15,15 +15,18 @@ const page = reactive({
 });
 
 const isLoading = ref(false);
-watch(() => props.node.id, async (first, second) => {
-  if (props.node.id) {
+watchEffect(async() => {
+  if (props.node.id > 0) {
     isLoading.value = true;
+    await nextTick();
     const data = await useApi('/books/page/' + props.node.id);
     isLoading.value = false;
+
     Object.assign(page, data.page);
     Object.assign(chapter, data.chapter);
   }
 });
+console.log('props.node', props.node)
 </script>
 
 <template>

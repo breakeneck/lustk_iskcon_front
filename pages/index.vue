@@ -1,15 +1,16 @@
 <script setup lang="ts">
+import {toReactive} from "@vueuse/shared";
+
 const isBooksVisible = ref(true);
 const tabs = reactive([]);
 const active = ref({label: '', id: 0, abbr: ''});
+const activeTabId = ref(0)
 function add(node) {
   tabs.push(node);
   activate(node.id)
 }
 function activate(id) {
-  Object.assign(active.value, tabs[findIndex(id)]);
-  console.log('tabs',tabs);
-  console.log('active', active);
+  activeTabId.value = id;
   isBooksVisible.value = false;
 }
 function close(id) {
@@ -18,7 +19,7 @@ function close(id) {
 }
 function showBooks() {
   isBooksVisible.value = true;
-  active.value.id = 0;
+  activeTabId.value = 0;
 }
 
 const findIndex = (id) => {
@@ -36,7 +37,7 @@ const findIndex = (id) => {
       <el-icon mr-2><el-icon-notebook /> </el-icon> Books
     </el-button>
     <div v-for="tab of tabs">
-      <el-button @click="activate(tab.id)" :class="{active: active.id == tab.id}">
+      <el-button @click="activate(tab.id)" :class="{active: tab.id == activeTabId}">
         {{tab.label}}
         <button @click="close(tab.id)">X</button>
       </el-button>
@@ -44,7 +45,10 @@ const findIndex = (id) => {
   </header>
   <div class="tabs">
     <books-list @chapter-click="add" v-show="isBooksVisible"/>
-    <book-page :node="active" v-show="! isBooksVisible"/>
+
+    <div v-for="tab of tabs" :key="tab.id" v-show="! isBooksVisible">
+      <book-page :node="tab" v-show="tab.id == activeTabId" />
+    </div>
   </div>
 </template>
 
