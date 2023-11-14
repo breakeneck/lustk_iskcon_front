@@ -2,7 +2,8 @@
 
 app()->group('/books', function () {
     app()->get('/', 'BooksController@index');
-    app()->get('/content/(\d+)', 'BooksController@content');
+    app()->get('/contents/(\d+)', 'BooksController@contents');
     app()->get('/chapters/(\d+)', 'BooksController@chapters');
+    app()->get('/page/(\d+)', 'BooksController@page');
     app()->get('/tree', 'BooksController@tree');
 });
