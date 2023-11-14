@@ -31,20 +31,26 @@ console.log('props.node', props.node)
 
 <template>
 <div pb-10 v-loading="isLoading">
+  <el-row>
   <h1>{{chapter.title}}</h1>
+  </el-row>
   <el-row>
     <code>{{page.sanskrit}}</code>
   </el-row>
   <el-row>
-  <i>{{page.wordly}}</i>
+    <i>{{page.wordly}}</i>
   </el-row>
   <el-row>
-  <strong>{{page.txt}}</strong>
+    <strong>{{page.txt}}</strong>
   </el-row>
-  <div>{{page.comment}}</div>
+  <el-row>
+    {{page.comment}}
+  </el-row>
 </div>
 </template>
 
 <style scoped>
-
+.el-row {
+  padding: 10px 50px;
+}
 </style>
