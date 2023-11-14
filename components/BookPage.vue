@@ -14,31 +14,43 @@ const page = reactive({
   comment: '',
 });
 
-watch(() => props.node, async (first, second) => {
-  if (props.node.id) {
+const isLoading = ref(false);
+watchEffect(async() => {
+  if (props.node.id > 0) {
+    isLoading.value = true;
+    await nextTick();
     const data = await useApi('/books/page/' + props.node.id);
+    isLoading.value = false;
+
     Object.assign(page, data.page);
     Object.assign(chapter, data.chapter);
   }
 });
+console.log('props.node', props.node)
 </script>
 
 <template>
-<div pb-10>
+<div pb-10 v-loading="isLoading">
+  <el-row>
   <h1>{{chapter.title}}</h1>
+  </el-row>
   <el-row>
     <code>{{page.sanskrit}}</code>
   </el-row>
   <el-row>
-  <i>{{page.wordly}}</i>
+    <i>{{page.wordly}}</i>
   </el-row>
   <el-row>
-  <strong>{{page.txt}}</strong>
+    <strong>{{page.txt}}</strong>
   </el-row>
-  <div>{{page.comment}}</div>
+  <el-row>
+    {{page.comment}}
+  </el-row>
 </div>
 </template>
 
 <style scoped>
-
+.el-row {
+  padding: 10px 50px;
+}
 </style>
