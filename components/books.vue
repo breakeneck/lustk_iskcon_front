@@ -2,11 +2,9 @@
 import type Node from 'element-plus/es/components/tree/src/model/node'
 
 const emit = defineEmits(['chapterClick']);
-// interface Node {
-//   label: string,
-//   id?: number,
-//   children?: [],
-// }
+const props = {
+  isLeaf: 'leaf',
+}
 const books = await useApi('/books');
 
 async function load(node: Node, resolve) {
@@ -33,7 +31,7 @@ function click(node: Node) {
 </script>
 
 <template>
-  <el-tree :data="books" :props="Node" lazy :load="load" @node-click="click" />
+  <el-tree :data="books" :props="props" lazy :load="load" @node-click="click" />
 </template>
 
 <style scoped>

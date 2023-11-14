@@ -11,11 +11,15 @@ class BooksController extends Controller
 {
     function index($lang = 'rus')
     {
-        response()->json(array_map(fn($book) => [
-            'label' => $book['id'] .' ' .$book['title'],
-            'id' => $book['id'],
-            'levels' => $book['levels'],
-        ], db()->select('books')->where('lang', $lang)->get()));
+        $response = [];
+        /** @var Book $book */
+        foreach(Book::language($lang)->get() as $book) {
+            $response[] = [
+                'id' => $book->id,
+                'label' => $book->title,
+            ];
+        }
+        response()->json($response);
     }
 
 
@@ -37,7 +41,8 @@ class BooksController extends Controller
         foreach(Chapter::subchapters(Chapter::find($id))->get() as $chapter) {
             $response[] = [
                 'id' => $chapter->id,
-                'label' => basename($chapter->path) .'. '. $chapter->title
+                'label' => basename($chapter->path) .'. '. $chapter->title,
+                'leaf' => $chapter->level === $chapter->book->levels
             ];
         }
         response()->json($response);

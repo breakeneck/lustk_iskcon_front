@@ -16,4 +16,9 @@ use Leaf\Model;
 class Book extends Model
 {
 
+    public function scopeLanguage($query, $lang)
+    {
+        return $query
+            ->where('lang', $lang);
+    }
 }
