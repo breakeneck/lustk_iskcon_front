@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import {toReactive} from "@vueuse/shared";
-
 const isBooksVisible = ref(true);
 const tabs = reactive([]);
+onMounted(() => tabs.push(...useBookStore().tabs));
+
 const active = ref({label: '', id: 0, abbr: ''});
 const activeTabId = ref(0)
 function add(node) {
