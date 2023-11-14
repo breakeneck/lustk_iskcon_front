@@ -12,6 +12,7 @@ use Leaf\Model;
  * @property $url
  * @property $engine
  * @property $levels
+ * @property $alias
  */
 class Book extends Model
 {

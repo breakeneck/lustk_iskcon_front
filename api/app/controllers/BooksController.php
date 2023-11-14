@@ -4,9 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Book;
 use App\Models\Chapter;
-use App\Models\Content;
 use App\Models\Page;
-use App\Models\User;
 use Leaf\Controller;
 
 class BooksController extends Controller
@@ -41,12 +39,15 @@ class BooksController extends Controller
     function chapters($id)
     {
         $response = [];
+        $parent = Chapter::find($id);
         /** @var Chapter $chapter */
-        foreach(Chapter::subchapters(Chapter::find($id))->get() as $chapter) {
+        foreach(Chapter::subchapters($parent)->get() as $chapter) {
+            $isLeaf = $chapter->level === $parent->book->levels;
             $response[] = [
                 'id' => $chapter->id,
                 'label' => basename($chapter->path) .'. '. $chapter->title,
-                'isLeaf' => $chapter->level === $chapter->book->levels
+                'isLeaf' => $isLeaf,
+                'abbr' => $isLeaf ? ($parent->book->alias . str_replace('/', '.', trim($chapter->path,'/'))) : null
             ];
         }
         response()->json($response);
