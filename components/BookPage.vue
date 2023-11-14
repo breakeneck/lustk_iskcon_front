@@ -30,7 +30,7 @@ console.log('props.node', props.node)
 </script>
 
 <template>
-<div pb-10 v-loading="isLoading">
+<div pb-10 lg:px-20 px-5 v-loading="isLoading">
   <el-row>
   <h1>{{chapter.title}}</h1>
   </el-row>
@@ -51,6 +51,6 @@ console.log('props.node', props.node)
 
 <style scoped>
 .el-row {
-  padding: 10px 50px;
+  padding: 10px 0;
 }
 </style>
