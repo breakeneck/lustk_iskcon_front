@@ -1,9 +1,4 @@
 <script setup lang="ts">
-interface Node {
-  label: string,
-  id: number
-}
-
 const props = defineProps(['node']);
 
 const chapter = reactive({
@@ -21,22 +16,11 @@ const page = reactive({
 
 watch(() => props.node, async (first, second) => {
   if (props.node.id) {
-    ElMessage(props.node.id + ' ' + props.node.id)
     const data = await useApi('/books/page/' + props.node.id);
     Object.assign(page, data.page);
     Object.assign(chapter, data.chapter);
   }
 });
-
-async function loadPage(node) {
-  ElMessage(node.id + ' ' + node.label)
-  const data = await useApi('/books/page/' + node.id);
-  Object.assign(page, data.page);
-  Object.assign(chapter, data.chapter);
-  // console.log('page',chapter, page);
-}
-
-// console.log('props.page', props.page);
 </script>
 
 <template>
