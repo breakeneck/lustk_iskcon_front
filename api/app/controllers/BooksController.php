@@ -9,7 +9,7 @@ use Leaf\Controller;
 
 class BooksController extends Controller
 {
-    function index($lang = 'rus')
+    function index($lang = 'ua')
     {
         $response = [];
         /** @var Book $book */

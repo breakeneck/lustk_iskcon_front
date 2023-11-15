@@ -1,7 +1,7 @@
 <?php
 
 app()->group('/books', function () {
-    app()->get('/', 'BooksController@index');
+    app()->get('/(\w+)', 'BooksController@index');
     app()->get('/contents/(\d+)', 'BooksController@contents');
     app()->get('/chapters/(\d+)', 'BooksController@chapters');
     app()->get('/page/(\d+)', 'BooksController@page');

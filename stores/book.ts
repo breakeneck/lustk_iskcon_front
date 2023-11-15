@@ -15,7 +15,8 @@
 export const useBookStore = defineStore('book', {
     state: () => {
         return {
-            tabs: []
+            tabs: [],
+            lang: 'ua'
         }
     },
     getters: {
