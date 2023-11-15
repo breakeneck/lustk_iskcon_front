@@ -26,7 +26,6 @@ watchEffect(async() => {
     Object.assign(chapter, data.chapter);
   }
 });
-console.log('props.node', props.node)
 </script>
 
 <template>

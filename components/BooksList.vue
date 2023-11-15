@@ -37,11 +37,13 @@ function click(node: Node) {
 </script>
 
 <template>
-  <span v-for="lang of LANGUAGES" p-2>
-<!--    <country-flag :country='lang' size='big' @click="setLang(lang)" cursor-pointer/>-->
-    <a href="#" @click="setLang(lang)">{{lang}}</a>
-  </span>
-  <el-tree :props="treeProps" lazy :load="load" @node-click="click" />
+  <div>
+    <span v-for="lang of LANGUAGES" p-2>
+  <!--    <country-flag :country='lang' size='big' @click="setLang(lang)" cursor-pointer/>-->
+      <a href="#" @click="setLang(lang)">{{lang}}</a>
+    </span>
+    <el-tree :props="treeProps" lazy :load="load" @node-click="click" />
+  </div>
 </template>
 
 <style scoped>

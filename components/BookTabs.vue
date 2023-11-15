@@ -15,7 +15,6 @@ function add(node) {
 function activate(id) {
   activeTabId.value = id;
   isBooksVisible.value = false;
-  console.log()
 }
 function close(id) {
   tabs.splice(findIndex(id), 1);
@@ -38,7 +37,7 @@ const findIndex = (id) => {
 
 <template>
   <header flex p-1>
-    <el-button @click="showBooks()">
+    <el-button @click="showBooks()" :class="{active: isBooksVisible}">
       <el-icon mr-2><el-icon-notebook /> </el-icon> Books
     </el-button>
     <div v-for="tab of tabs">
