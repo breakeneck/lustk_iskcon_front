@@ -23,7 +23,9 @@
   },
   "dependencies": {
     "@anu-vue/nuxt": "^0.15.2",
+    "@growthbunker/vueflags": "^0.1.14",
     "@pinia/nuxt": "^0.5.1",
-    "pinia": "^2.1.7"
+    "pinia": "^2.1.7",
+    "vue-country-flag-next": "^2.3.2"
   }
 }

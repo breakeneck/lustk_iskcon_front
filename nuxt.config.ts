@@ -23,4 +23,7 @@ export default defineNuxtConfig({
       baseURL: process.env.BASE_URL || 'http://gauranga.duckdns.org:5500/',
     },
   },
+  plugins: [
+    '~/plugins/vueflags.ts'
+  ]
 })

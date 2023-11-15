@@ -615,6 +615,11 @@
     "@floating-ui/dom" "^1.4.5"
     vue-demi ">=0.13.0"
 
+"@growthbunker/vueflags@^0.1.14":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@growthbunker/vueflags/-/vueflags-0.1.14.tgz#a4e756789c4e7c258c4bb82ebf5736c9549db5cb"
+  integrity sha512-iw0r5QIHV9j2YDLf71m0RsZPIueVwGyBlYfqtzHZUtXJq+uBYERSmpZeTeGh6XhwFR63aIvOITvq6hRHBxdXLw==
+
 "@iconify-json/bx@latest":
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/@iconify-json/bx/-/bx-1.1.7.tgz#17ccfe207e9f720cba90f07da3fd2ecb477f76e5"
@@ -5827,6 +5832,11 @@ vue-bundle-renderer@^2.0.0:
   integrity sha512-oYATTQyh8XVkUWe2kaKxhxKVuuzK2Qcehe+yr3bGiaQAhK3ry2kYE4FWOfL+KO3hVFwCdLmzDQTzYhTi9C+R2A==
   dependencies:
     ufo "^1.2.0"
+
+vue-country-flag-next@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/vue-country-flag-next/-/vue-country-flag-next-2.3.2.tgz#c35d283f83b7631be414c720391a8363991557c2"
+  integrity sha512-Lv12L1VTwlBgizpZ3xPEPO3zuIETaJmeSiPuLOWLLgu2EakwU/o72iKYiKcdZ6BXiSkfss+Ski5fDzjuxZ1DcA==
 
 vue-demi@*, vue-demi@>=0.13.0, vue-demi@>=0.14.5:
   version "0.14.6"

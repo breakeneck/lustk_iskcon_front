@@ -1,3 +1,3 @@
 export const LANGUAGES = [
-    'ua', 'ru', 'en'
+    'ua', 'ru', 'us'
 ]
