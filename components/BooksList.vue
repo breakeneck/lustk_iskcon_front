@@ -43,8 +43,8 @@ function click(node: Node) {
 <!--  bg-light-blue-100 rounded-->
   <div v-loading="isLoading">
     <div flex gap-2 m-1>
-      <div v-for="lang of LANGUAGES" @click="setLang(lang)" cursor-pointer rounded bg-warmgray-100 py-0 px-2>
-        <country-flag  :country="lang"/>
+      <div v-for="lang of LANGUAGES" @click="setLang(lang)"  class="lang" :class="{active: store.lang == lang || false}" rounded  py-0 px-2>
+        <country-flag :country="lang"/>
       </div>
     </div>
     <el-tree :props="treeProps" lazy :load="load" @node-click="click" :key="store.lang || null" />
@@ -52,5 +52,17 @@ function click(node: Node) {
 </template>
 
 <style scoped>
+.lang {
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e4e7ed;
+}
+.active {
+  color: var(--el-button-active-text-color);
+  border-color: #409eff;
+  outline: 0;
+  background: rgb(236, 245, 255);
+}
 
 </style>
