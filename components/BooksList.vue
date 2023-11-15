@@ -3,6 +3,7 @@ import type Node from 'element-plus/es/components/tree/src/model/node'
 import {LANGUAGES} from "~/composables/constants";
 
 const store = useBookStore()
+const isLoading = ref(false);
 
 const treeProps = {
   isLeaf: 'isLeaf',
@@ -10,7 +11,9 @@ const treeProps = {
 async function load(node: Node, resolve) {
   switch (node.level) {
     case 0:
+      isLoading.value = true;
       resolve(await useApi('/books/' + store.lang));
+      isLoading.value = false;
       break;
     case 1:
       resolve(await useApi('/books/contents/' + node.data.id))
@@ -37,12 +40,12 @@ function click(node: Node) {
 </script>
 
 <template>
-  <div>
+  <div v-loading="isLoading">
     <span v-for="lang of LANGUAGES" p-2>
   <!--    <country-flag :country='lang' size='big' @click="setLang(lang)" cursor-pointer/>-->
-      <a href="#" @click="setLang(lang)">{{lang}}</a>
+        <el-link type="primary" @click="setLang(lang)">{{ lang }}</el-link>
     </span>
-    <el-tree :props="treeProps" lazy :load="load" @node-click="click" />
+    <el-tree :props="treeProps" lazy :load="load" @node-click="click" :key="store.lang || null" />
   </div>
 </template>
 
