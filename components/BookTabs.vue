@@ -1,14 +1,15 @@
 <script setup lang="ts">
 const isBooksVisible = ref(true);
-const tabs = reactive([]);
-onMounted(() => tabs.push(...useBookStore().tabs));
-
-const active = ref({label: '', id: 0, abbr: ''});
+const store = useBookStore();
 const activeTabId = ref(0)
+
+const isMounted = ref(false);
+onMounted(() => isMounted.value = true)
+
 function add(node) {
   const isExist = findIndex(node.id);
   if (! isExist) {
-    tabs.push(node);
+    store.tabs.push(node);
   }
   activate(node.id)
 }
@@ -17,7 +18,7 @@ function activate(id) {
   isBooksVisible.value = false;
 }
 function close(id) {
-  tabs.splice(findIndex(id), 1);
+  store.tabs.splice(findIndex(id), 1);
   isBooksVisible.value = true;
 }
 function showBooks() {
@@ -26,8 +27,8 @@ function showBooks() {
 }
 
 const findIndex = (id) => {
-  for(let index = 0; index < tabs.length; index++) {
-    if (tabs[index].id == id) {
+  for(let index = 0; index < store.tabs.length; index++) {
+    if (store.tabs[index].id == id) {
       return index;
     }
   }
@@ -40,7 +41,7 @@ const findIndex = (id) => {
     <el-button @click="showBooks()" :class="{active: isBooksVisible}">
       <el-icon mr-2><el-icon-notebook /> </el-icon> Books
     </el-button>
-    <div v-for="tab of tabs">
+    <div v-for="tab of store.tabs">
       <el-button @click="activate(tab.id)" :class="{active: tab.id == activeTabId}" plain>
         {{tab.abbr}}
         <el-icon ml-1 v-if="tab.id == activeTabId">
@@ -52,7 +53,7 @@ const findIndex = (id) => {
   <div class="tabs">
     <books-list @chapter-click="add" v-show="isBooksVisible"/>
 
-    <div v-for="tab of tabs" :key="tab.id" v-show="! isBooksVisible">
+    <div v-for="tab of store.tabs" :key="tab.id" v-show="! isBooksVisible" v-if="isMounted">
       <book-page :node="tab" v-show="tab.id == activeTabId" />
     </div>
   </div>
