@@ -42,7 +42,9 @@ const findIndex = (id) => {
     <div v-for="tab of tabs">
       <el-button @click="activate(tab.id)" :class="{active: tab.id == activeTabId}" plain>
         {{tab.abbr}}
-        <el-icon ml-1 ><ElIconCircleCloseFilled @click="close(tab.id)" text-rose-400/></el-icon>
+        <el-icon ml-1 v-if="tab.id == activeTabId">
+          <ElIconCircleCloseFilled @click="close(tab.id)" text-rose-400/>
+        </el-icon>
       </el-button>
     </div>
   </header>
