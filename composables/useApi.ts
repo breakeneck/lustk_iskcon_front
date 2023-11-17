@@ -1,8 +1,6 @@
-const API_URL = 'http://localhost:5500';
-
 export const useGet = async (path) => {
     const options = {};
-    return await useFetch(API_URL + path, addDefaultOpts(options));
+    return await useFetch(useRuntimeConfig().public.apiUrl + path, addDefaultOpts(options));
 }
 
 export const usePost = async (path, payload) => {
@@ -10,7 +8,7 @@ export const usePost = async (path, payload) => {
         method: 'POST',
         body: payload
     }
-    return await useFetch(API_URL + path, addDefaultOpts(options));
+    return await useFetch(useRuntimeConfig().public.apiUrl + path, addDefaultOpts(options));
 }
 
 export const useApi = async(url, payload = null) => {
@@ -18,7 +16,7 @@ export const useApi = async(url, payload = null) => {
         method: 'POST',
         body: payload
     }
-    const {data} = await useFetch(API_URL + url, addDefaultOpts(options));
+    const {data} = await useFetch(useRuntimeConfig().public.apiUrl + url, addDefaultOpts(options));
     return data.value;
 }
 

@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      baseURL: process.env.BASE_URL || 'http://gauranga.duckdns.org:5500/',
+      apiUrl: 'http://localhost:5500',
     },
   },
   plugins: [
