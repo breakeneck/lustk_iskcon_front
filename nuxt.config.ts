@@ -20,7 +20,7 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      apiUrl: 'http://localhost:5500',
+      apiUrl: 'http://localhost:5500/api',
     },
   },
   plugins: [
