@@ -31,12 +31,12 @@ export const useApi = async(url, payload = null) => {
     // console.log('public', process.env.NUXT_PUBLIC_API_URL);
 
     const API_URL = useRuntimeConfig().nitro ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl;
-    // console.log('config', API_URL);
+    console.log('config', API_URL);
     // console.log('config', process.server ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl);
 
 // console.log('SEPARATOR');
     const {data} = await useFetch(API_URL + url, addDefaultOpts(options));
-    // console.log(API_URL + url, data);
+    console.log(API_URL + url, data);
     return data.value;
 }
 
