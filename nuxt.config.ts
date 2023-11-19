@@ -19,9 +19,9 @@ export default defineNuxtConfig({
       '@unocss/reset/sanitize/assets.css',
   ],
   runtimeConfig: {
-    apiUrl: '',
+    apiUrl: 'http://127.0.0.1/api',
     public: {
-      apiUrl: '',
+      apiUrl: 'https://iskcon-lutsk.duckdns.org/api',
     },
   },
   plugins: [
