@@ -28,7 +28,7 @@ export const useApi = async(url, payload = null) => {
     // console.log('SEPARATOR');
     // console.log('server', process.env);
     // console.log('client', process.env.NUXT_PUBLIC_API_URL);
-    const API_URL = /*process.server && !process.dev ? useRuntimeConfig().apiUrl : */useRuntimeConfig().public.apiUrl;
+    const API_URL = process.server ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl;
     // console.log('config', API_URL);
     // console.log('config', process.server ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl);
 
