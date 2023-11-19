@@ -5,9 +5,6 @@ import {LANGUAGES} from "~/composables/constants";
 const store = useBookStore()
 const isLoading = ref(false);
 
-const books = await useApi('/books/' + store.lang);
-// console.log('apiurl', process.server ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl);
-// console.log('books213213', books);
 const treeProps = {
   isLeaf: 'isLeaf',
 }
@@ -15,7 +12,7 @@ async function load(node: Node, resolve) {
   switch (node.level) {
     case 0:
       isLoading.value = true;
-      resolve(books);
+      resolve(await useApi('/books/' + store.lang));
       isLoading.value = false;
       break;
     case 1:
@@ -31,7 +28,7 @@ async function load(node: Node, resolve) {
 
 async function setLang(lang) {
   store.lang = lang;
-  const books = await useApi('/books/' + store.lang);
+  await useApi('/books/' + store.lang);
 }
 
 const emit = defineEmits(['chapterClick']);
@@ -50,7 +47,7 @@ function click(node: Node) {
         <country-flag :country="lang"/>
       </div>
     </div>
-    <el-tree :props="treeProps" lazy :load="load" @node-click="click" :key="store.lang || null" />
+    <el-tree :props="treeProps" lazy :load="load" @node-click="click" :key="store.lang" />
   </div>
 </template>
 
