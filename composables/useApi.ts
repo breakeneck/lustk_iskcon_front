@@ -30,7 +30,7 @@ export const useApi = async(url, payload = null) => {
     // console.log('client', process.env.NUXT_API_URL);
     // console.log('public', process.env.NUXT_PUBLIC_API_URL);
 
-    const API_URL = useRuntimeConfig().nitro ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl;
+    const API_URL = useRuntimeConfig().public.apiUrl;
     console.log('config', API_URL);
     // console.log('config', process.server ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl);
 
