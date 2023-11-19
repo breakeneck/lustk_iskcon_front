@@ -1,6 +1,14 @@
+function getApiUrl() {
+    // console.log('apiurl', process.server ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl);
+    // return process.server ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl;
+    // return 'http://127.0.0.1:5500/api'
+    return 'http://localhost:5500/api'
+    // return useRuntimeConfig().public.apiUrl
+}
+
 export const useGet = async (path) => {
     const options = {};
-    return await useFetch(useRuntimeConfig().public.apiUrl + path, addDefaultOpts(options));
+    return await useFetch(getApiUrl() + path, addDefaultOpts(options));
 }
 
 export const usePost = async (path, payload) => {
@@ -8,7 +16,7 @@ export const usePost = async (path, payload) => {
         method: 'POST',
         body: payload
     }
-    return await useFetch(useRuntimeConfig().public.apiUrl + path, addDefaultOpts(options));
+    return await useFetch(getApiUrl() + path, addDefaultOpts(options));
 }
 
 export const useApi = async(url, payload = null) => {
@@ -16,7 +24,17 @@ export const useApi = async(url, payload = null) => {
         method: 'POST',
         body: payload
     }
-    const {data} = await useFetch(useRuntimeConfig().public.apiUrl + url, addDefaultOpts(options));
+
+    // console.log('SEPARATOR');
+    // console.log('server', process.env);
+    // console.log('client', process.env.NUXT_PUBLIC_API_URL);
+    const API_URL = /*process.server && !process.dev ? useRuntimeConfig().apiUrl : */useRuntimeConfig().public.apiUrl;
+    // console.log('config', API_URL);
+    // console.log('config', process.server ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl);
+
+// console.log('SEPARATOR');
+    const {data} = await useFetch(API_URL + url, addDefaultOpts(options));
+    // console.log(API_URL + url, data);
     return data.value;
 }
 

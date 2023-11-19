@@ -19,8 +19,9 @@ export default defineNuxtConfig({
       '@unocss/reset/sanitize/assets.css',
   ],
   runtimeConfig: {
+    apiUrl: '',
     public: {
-      apiUrl: 'http://localhost:5500/api',
+      apiUrl: '',
     },
   },
   plugins: [

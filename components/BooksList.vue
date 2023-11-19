@@ -5,6 +5,9 @@ import {LANGUAGES} from "~/composables/constants";
 const store = useBookStore()
 const isLoading = ref(false);
 
+const books = await useApi('/books/' + store.lang);
+// console.log('apiurl', process.server ? useRuntimeConfig().apiUrl : useRuntimeConfig().public.apiUrl);
+// console.log('books213213', books);
 const treeProps = {
   isLeaf: 'isLeaf',
 }
@@ -12,7 +15,7 @@ async function load(node: Node, resolve) {
   switch (node.level) {
     case 0:
       isLoading.value = true;
-      resolve(await useApi('/books/' + store.lang));
+      resolve(books);
       isLoading.value = false;
       break;
     case 1:

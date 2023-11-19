@@ -20,7 +20,7 @@ onMounted(() => mounted.value = true)
 
 // onUnmounted(() => {
 watchEffect(async () => {
-  console.log('props.node', props.node);
+  // console.log('props.node', props.node);
   if (props.node.id > 0) {
     isLoading.value = true;
     await nextTick();
