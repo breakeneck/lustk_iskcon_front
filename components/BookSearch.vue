@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import Node from "element-plus/es/components/tree/src/model/node";
-
 const searchInput = ref('');
 const isLoading = ref(false);
 const pages = reactive([]);
+const store = useBookStore();
 async function search() {
   pages.value = [];
 
   isLoading.value = true;
-  const data = await useApi('/books/search/' + searchInput.value);
+  const data = await useApi(`/books/search/${store.lang}/${searchInput.value}`);
   isLoading.value = false;
 
   pages.push(...data);
@@ -27,6 +26,7 @@ const emit = defineEmits(['chapterClick']);
 
 <template>
   <div v-loading="isLoading">
+    <book-langs />
     <el-input v-model="searchInput" placeholder="Search" @keyup.enter="search()"/>
     <ul>
       <li v-for="page of pages" :key="page.id">

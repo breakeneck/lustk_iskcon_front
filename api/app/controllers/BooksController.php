@@ -60,10 +60,11 @@ class BooksController extends Controller
         ]);
     }
 
-    function search($query)
+    function search($lang, $query)
     {
         $pages = Page::with('book')
             ->where('search_sanskrit', 'LIKE', "%$query%")
+            ->whereRelation('book', 'lang', $lang)
             ->limit(50)->get();
         response()->json($pages);
 //        [
