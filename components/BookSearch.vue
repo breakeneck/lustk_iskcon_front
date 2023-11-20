@@ -30,9 +30,9 @@ const emit = defineEmits(['chapterClick']);
     <el-input v-model="searchInput" placeholder="Search" @keyup.enter="search()"/>
     <ul>
       <li v-for="page of pages" :key="page.id">
-        <a href="#" @click="click(page)">
+        <el-link type="primary" href="#" @click="click(page)">
           <strong>{{page.book.alias}} {{page.path.replace(/^\/|\/$/g, '').replace(/\//g, '.')}}</strong>
-        </a>
+        </el-link>
         <span ml-1>{{page.txt}}</span>
       </li>
     </ul>

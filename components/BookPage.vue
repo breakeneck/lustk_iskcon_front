@@ -4,7 +4,7 @@ const props = defineProps(['node']);
 const chapter = reactive({
   book_id: 0,
   id: 0,
-  title: 'Not selected'
+  title: 'Loading...'
 });
 
 const page = reactive({
