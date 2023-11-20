@@ -71,8 +71,7 @@ const findIndex = (id) => {
     <books-list @chapter-click="add" v-show="isActive(BOOK_TAB)"/>
 
     <div v-show="isActive(SEARCH_TAB)">
-      <el-input placeholder="Search"/>
-      <div>Results here</div>
+      <book-search @chapter-click="add" />
     </div>
 
     <div v-for="tab of store.tabs" :key="tab.id" v-show="isActive(ITEM_TAB)" v-if="isMounted">

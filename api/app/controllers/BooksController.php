@@ -60,6 +60,17 @@ class BooksController extends Controller
         ]);
     }
 
+    function search($query)
+    {
+        $pages = Page::with('book')
+            ->where('search_sanskrit', 'LIKE', "%$query%")
+            ->limit(50)->get();
+        response()->json($pages);
+//        [
+//            'pages' => $pages
+//        ]);
+    }
+
 //    function tree($lang = 'ukr')
 //    {
 //        response()->json(array_map(fn($book) => [

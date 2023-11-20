@@ -26,7 +26,7 @@ async function load(node: Node, resolve) {
   }
 }
 
-async function setLang(lang) {
+async function setLang(lang: string) {
   store.lang = lang;
   await useApi('/books/' + store.lang);
 }
@@ -40,7 +40,6 @@ function click(node: Node) {
 </script>
 
 <template>
-<!--  bg-light-blue-100 rounded-->
   <div v-loading="isLoading">
     <div flex gap-2 m-1>
       <div v-for="lang of LANGUAGES" @click="setLang(lang)"  class="lang" :class="{active: store.lang == lang || false}" rounded  py-0 px-2>
