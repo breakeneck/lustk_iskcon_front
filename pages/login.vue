@@ -7,16 +7,19 @@ const error = ref('')
 const user = useUserStore();
 
 async function login() {
-  const { data } = await usePost('/login', {email, password});
-  error.value = data.value.error;
-  if (! error.value) {
-    ElMessage(`User ${data.value.user.name} is logged in successfully`);
-    user.saveAuth(data.value.user);
+  const {user, error} = await useApi('/login', {email, password});
+  if (error) {
+    ElMessage({
+      showClose: true,
+      message: error,
+      type: 'error',
+    })
   }
+  user.saveAuth(user);
 }
 async function logout() {
-  const { data } = await useGet('/logout');
-  console.log(data.value);
+  const result = await useApi('/logout');
+  console.log(result);
 }
 
 </script>

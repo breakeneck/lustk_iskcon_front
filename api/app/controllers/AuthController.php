@@ -11,6 +11,11 @@ class AuthController extends Controller
         print_r(request()->getPath());
     }
 
+    public function register()
+    {
+
+    }
+
     public function login()
     {
         $user = new User(request()->input());

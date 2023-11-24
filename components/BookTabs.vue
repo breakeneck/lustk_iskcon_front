@@ -66,6 +66,10 @@ const findIndex = (id) => {
         </el-icon>
       </el-button>
     </div>
+
+    <el-button @click="useRouter().push('/login')" ml-auto>
+      <el-icon><el-icon-user /> </el-icon>
+    </el-button>
   </header>
   <div class="tabs">
     <books-list @chapter-click="add" v-show="isActive(BOOK_TAB)"/>
