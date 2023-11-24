@@ -7,4 +7,5 @@ app()->group('/api/books', function () {
     app()->get('/page/(\d+)', 'BooksController@page');
     app()->get('/search/(\w+)/(.*)', 'BooksController@search');
     app()->get('/tree', 'BooksController@tree');
+    app()->get('/texts/(\d+)', 'BooksController@texts');
 });

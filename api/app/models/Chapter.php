@@ -19,6 +19,10 @@ class Chapter extends Model
     {
         return $this->belongsTo(Book::class, 'book_id');
     }
+//    public function page(): BelongsTo
+//    {
+//        return $this->hasOne(Page::class, 'chapter_id');
+//    }
     public function scopeContent($query, $bookId)
     {
         return $query

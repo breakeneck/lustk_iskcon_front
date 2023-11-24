@@ -52,6 +52,34 @@ class BooksController extends Controller
         }
         response()->json($response);
     }
+
+    function texts($id)
+    {
+        $pages = [];
+        $response = [];
+        $parent = Chapter::find($id);
+        /** @var Chapter $chapter */
+        foreach(Chapter::subchapters($parent)->get() as $chapter) {
+            $page = Page::byChapter($chapter->id)->first();
+            if (isset($page->id)) {
+                $pages[] = $page;
+            }
+
+//            $response[] = [
+//                'id' => $chapter->id,
+//                'label' => $chapter->title,
+//            ];
+        }
+//        $pages = Page::byChapter($id)->get();
+        /** @var Page $page */
+        foreach($pages as $page) {
+            $response[] = [
+                'id' => $page->id,
+                'label' => $page->txt,
+            ];
+        }
+        response()->json($response);
+    }
     function page($id)
     {
         response()->json([

@@ -1,10 +1,8 @@
 <script setup lang="ts">
-import {useUserStore} from "~/stores/user";
+const userStore = useUserStore();
 
 const email = ref('');
 const password = ref('');
-const error = ref('')
-const user = useUserStore();
 
 async function login() {
   const {user, error} = await useApi('/login', {email, password});
@@ -15,7 +13,10 @@ async function login() {
       type: 'error',
     })
   }
-  user.saveAuth(user);
+  else {
+    userStore.saveAuth(user);
+    useRouter().push('/broadcast');
+  }
 }
 async function logout() {
   const result = await useApi('/logout');
