@@ -27,10 +27,10 @@ async function logout() {
 
 <template>
 <div class="center-screen">
-  <div flex flex-col gap-2>
-    <el-alert type="error" v-if="error" :closable="false">
-      {{error}}
-    </el-alert>
+  <form flex flex-col gap-2 onsubmit="login()">
+<!--    <el-alert type="error" v-if="error" :closable="false">-->
+<!--      {{error}}-->
+<!--    </el-alert>-->
     <el-row>
       <el-input v-model="email" placeholder="Email"/>
     </el-row>
@@ -40,7 +40,7 @@ async function logout() {
     <el-row flex flex-self-end>
       <el-button type="primary" @click="login()">Login</el-button>
     </el-row>
-  </div>
+  </form>
 </div>
 </template>
 
