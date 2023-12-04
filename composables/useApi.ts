@@ -1,4 +1,4 @@
-export const useApi = async(url, payload = null) => {
+export const useApi = async(url: string, payload = null) => {
     const options = !payload ? {} : {
         method: 'POST',
         body: payload
@@ -8,10 +8,10 @@ export const useApi = async(url, payload = null) => {
     return data.value;
 }
 
-function addDefaultOpts(options) {
+function addDefaultOpts(options: Object) {
     const user = useUserStore();
     if (user.isLogged) {
-        options['headers'] = {
+        options.headers = {
             Authorization: 'Bearer ' + user.model.access_token
         };
     }

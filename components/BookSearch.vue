@@ -17,7 +17,7 @@ async function search() {
 function click(page) {
   let node = {
     id: page.chapter_id,
-    abbr: page.book.alias + ' ' + page.path.replace(/^\/|\/$/g, '').replace(/\//g, '.')
+    abbr: usePageAbbr(page)
   }
   emit('chapterClick', node)
 }

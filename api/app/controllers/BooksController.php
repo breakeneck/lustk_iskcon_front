@@ -84,7 +84,7 @@ class BooksController extends Controller
     {
         response()->json([
             'chapter' => Chapter::find($id),
-            'page' => Page::byChapter($id)->first()
+            'page' => Page::with('book')->byChapter($id)->first()
         ]);
     }
 
