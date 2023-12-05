@@ -12,7 +12,7 @@ watch(chapterId, async () => {
 });
 watch(subchapterId, async () => {
   texts.length = 0;
-  texts.push(...await useApi('/books/chapters/' + subchapterId.value));
+  texts.push(...await useApi('/books/texts/' + subchapterId.value));
 });
 
 const emit = defineEmits(['add'])
@@ -20,13 +20,13 @@ const emit = defineEmits(['add'])
 
 <template>
   <el-select v-model="chapterId" class="m-2" placeholder="Select Chapter">
-    <el-option v-for="chapter in chapters" :label="chapter.label" :value="chapter.id"/>
+    <el-option v-for="chapter in chapters" :label="chapter.label" :value="chapter.id" :key="chapter.id" />
   </el-select>
   <el-select v-model="subchapterId" class="m-2" placeholder="Select Subchapter" v-if="subchapters.length">
-    <el-option v-for="subchapter in subchapters" :label="subchapter.label" :value="subchapter.id"/>
+    <el-option v-for="subchapter in subchapters" :label="subchapter.label" :value="subchapter.id" :key="subchapter.id" />
   </el-select>
   <el-select v-model="textId" class="m-2" placeholder="Select Text" v-if="texts.length">
-    <el-option v-for="text in texts" :label="text.label" :value="text.id"/>
+    <el-option v-for="text in texts" :label="text.label" :value="text.id" :key="text.id" />
   </el-select>
 
   <el-button @click="emit('add', textId)" v-if="textId">

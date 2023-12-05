@@ -60,7 +60,7 @@ class BooksController extends Controller
         $parent = Chapter::find($id);
         /** @var Chapter $chapter */
         foreach(Chapter::subchapters($parent)->get() as $chapter) {
-            $page = Page::byChapter($chapter->id)->first();
+            $page = Page::byChapter($chapter->id)->with('chapter')->first();
             if (isset($page->id)) {
                 $pages[] = $page;
             }
@@ -75,7 +75,7 @@ class BooksController extends Controller
         foreach($pages as $page) {
             $response[] = [
                 'id' => $page->id,
-                'label' => $page->txt,
+                'label' => $page->chapter->title,
             ];
         }
         response()->json($response);

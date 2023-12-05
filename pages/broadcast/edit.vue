@@ -36,7 +36,7 @@ definePageMeta({
       <div flex gap-2>
         <el-date-picker v-model="broadcast.date" type="Date" value-format="YYYY-MM-DD"/>
         <lectors :user-id="broadcast.user_id" @update-user-id="(value) => broadcast.user_id = value"/>
-        <broadcast-pages @delete-shloka="deleteShloka"/>
+        <broadcast-shlokas :broadcast="broadcast" show-delete="true" @delete-shloka="deleteShloka"/>
 
         <el-button type="primary" @click="update(broadcast)">Save</el-button>
       </div>

@@ -23,5 +23,10 @@ class Broadcast extends Model
         return $this->belongsToMany(Page::class);
     }
 
+    function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     protected $fillable = ['user_id', 'date', 'custom_title'];
 }

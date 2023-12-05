@@ -10,7 +10,7 @@ class BroadcastController extends Controller
 {
     function index()
     {
-        response()->json(Broadcast::with('pages.book')->get());
+        response()->json(Broadcast::with(['pages.book', 'user'])->get());
     }
 
     function create()

@@ -38,7 +38,7 @@ const clear = () => {
 
 <template>
   <el-select v-model="model">
-    <el-option v-for="user of users" :label="user.name" :value="user.id" />
+    <el-option v-for="user of users" :label="user.name" :value="user.id" :key="'user' + user.id" />
     <template #footer>
       <el-button v-if="! isAdding" text bg size="small" @click="onAddUser">Add new user</el-button>
       <template v-else>

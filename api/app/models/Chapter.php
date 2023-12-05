@@ -4,6 +4,7 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Leaf\Model;
 
 /**
@@ -35,6 +36,11 @@ class Chapter extends Model
             ->where('book_id', $chapter->book->id)
             ->where('level', $chapter->level + 1)
             ->where('path', 'LIKE', $chapter->path . '/%');
+    }
+
+    public function page(): HasOne
+    {
+        return $this->hasOne(Page::class);
     }
 
 
