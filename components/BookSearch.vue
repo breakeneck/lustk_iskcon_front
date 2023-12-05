@@ -17,7 +17,7 @@ async function search() {
 function click(page) {
   let node = {
     id: page.chapter_id,
-    abbr: usePageAbbr(page)
+    abbr: formatPageAbbr(page)
   }
   emit('chapterClick', node)
 }

@@ -19,17 +19,17 @@ const emit = defineEmits(['add'])
 </script>
 
 <template>
-  <el-select v-model="chapterId" class="m-2" placeholder="Select Chapter" size="large">
+  <el-select v-model="chapterId" class="m-2" placeholder="Select Chapter">
     <el-option v-for="chapter in chapters" :label="chapter.label" :value="chapter.id"/>
   </el-select>
-  <el-select v-model="subchapterId" class="m-2" placeholder="Select Subchapter" size="large" v-if="subchapters.length">
+  <el-select v-model="subchapterId" class="m-2" placeholder="Select Subchapter" v-if="subchapters.length">
     <el-option v-for="subchapter in subchapters" :label="subchapter.label" :value="subchapter.id"/>
   </el-select>
-  <el-select v-model="textId" class="m-2" placeholder="Select Text" size="large" v-if="texts.length">
+  <el-select v-model="textId" class="m-2" placeholder="Select Text" v-if="texts.length">
     <el-option v-for="text in texts" :label="text.label" :value="text.id"/>
   </el-select>
 
-  <el-button type="primary" @click="emit('add', textId)" v-if="textId">
+  <el-button @click="emit('add', textId)" v-if="textId">
     <el-icon> <el-icon-plus /> </el-icon>
   </el-button>
 </template>

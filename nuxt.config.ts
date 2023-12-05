@@ -25,5 +25,9 @@ export default defineNuxtConfig({
   },
   plugins: [
     '~/plugins/vueflags.ts'
-  ]
+  ],
+  // ssr: false,
+  routeRules: {
+    '/broadcast': {ssr: true},
+  },
 })

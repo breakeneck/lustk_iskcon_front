@@ -1,4 +1,5 @@
-export const useApi = async(url: string, payload = null) => {
+// @ts-ignore
+export const useApi = async(url: string, payload: Object = null) => {
     const options = !payload ? {} : {
         method: 'POST',
         body: payload
